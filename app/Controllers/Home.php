@@ -4,8 +4,15 @@ namespace App\Controllers;
 
 class Home extends BaseController
 {
-    public function index(): string
+    public function index()
     {
-        return view('welcome_message');
+        $data = [
+            'title'  => 'Inicio - Preguntero',
+            'navbar' => view('partials/navbar'),
+            'main'   => view('partials/main'),
+            'footer' => view('partials/footer'),
+        ];
+
+        return view('plantilla', $data);
     }
 }

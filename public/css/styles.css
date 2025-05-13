@@ -1,0 +1,20 @@
+/* Reset básico para asegurar altura total */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Wrapper principal para el contenido entre navbar y footer */
+.content-wrapper {
+    min-height: calc(100vh - 56px - 170px) !important; /* navbar: 56px, footer: ~120px */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa; /* bg-light de Bootstrap */
+}
+
+/* Opcional: evitar que el footer quede pegado al contenido si hay poco */
+footer {
+    margin-top: auto;
+}
