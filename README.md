@@ -35,25 +35,51 @@ La base de datos usa una única tabla llamada `preguntas`. Su estructura es la s
 
 ---
 
-## 🧩 Estructura del proyecto
+## 🧩 Estructura del Proyecto
 
-app/
-├── Controllers/                # Controladores del proyecto
-│   ├── Home.php                # Controlador principal, maneja la página de inicio
-│   ├── PreguntaController.php  # Controlador encargado del formulario de preguntas y su guardado
-│   └── Pregunta.php            # Controlador API para obtener las preguntas almacenadas
-├── Models/                     # Modelos que interactúan con la base de datos
-│   └── PreguntaModel.php       # Modelo que gestiona la tabla 'preguntas' en la base de datos
-├── Views/                      # Archivos de vistas que definen la interfaz de usuario
-│   ├── plantilla.php           # Plantilla base (layout) que envuelve todas las vistas
-│   ├── cargar_pregunta.php     # Vista que muestra el formulario para cargar nuevas preguntas
-│   └── partials/               # Vistas parciales reutilizables
-│       ├── navbar.php          # Barra de navegación común en todas las páginas
-│       ├── main.php            # Contenido principal de la página
-│       └── footer.php          # Pie de página común en todas las páginas
-public/
-└── css/                        # Archivos de estilo CSS para el diseño visual
-    └── styles.css              # Estilos personalizados que definen la apariencia de la aplicación
+La estructura de este proyecto sigue una convención estándar de CodeIgniter 4 (CI4) y se organiza de la siguiente manera:
+
+### **app/**
+- **Controllers/**: Controladores del proyecto.
+  - `Home.php`: Controlador principal, maneja la página de inicio.
+  - `PreguntaController.php`: Controlador encargado del formulario de preguntas y su guardado.
+  - `Pregunta.php`: Controlador API para obtener las preguntas almacenadas.
+  
+- **Models/**: Modelos que interactúan con la base de datos.
+  - `PreguntaModel.php`: Modelo que gestiona la tabla `preguntas` en la base de datos.
+
+- **Views/**: Archivos de vistas que definen la interfaz de usuario.
+  - `plantilla.php`: Plantilla base (layout) que envuelve todas las vistas.
+  - `cargar_pregunta.php`: Vista que muestra el formulario para cargar nuevas preguntas.
+  
+  - **partials/**: Vistas parciales reutilizables.
+    - `navbar.php`: Barra de navegación común en todas las páginas.
+    - `main.php`: Contenido principal de la página.
+    - `footer.php`: Pie de página común en todas las páginas.
+
+### **public/**
+- **css/**: Archivos de estilo CSS para el diseño visual.
+  - `styles.css`: Estilos personalizados que definen la apariencia de la aplicación.
+
+---
+
+### Descripción de Componentes:
+
+- **Controllers/**: Contiene la lógica del negocio, donde se gestionan las solicitudes HTTP y se retornan las respuestas adecuadas.
+    - `Home.php`: Controlador para la página de inicio de la aplicación.
+    - `PreguntaController.php`: Controlador responsable de manejar el formulario de carga de preguntas y guardarlas en la base de datos.
+    - `Pregunta.php`: Controlador de la API para proporcionar acceso a las preguntas almacenadas.
+
+- **Models/**: Se encarga de la lógica de acceso a datos, interactuando con la base de datos.
+    - `PreguntaModel.php`: Modelo que gestiona la tabla `preguntas`, interactuando directamente con la base de datos para obtener y almacenar preguntas.
+
+- **Views/**: Contiene los archivos de vista que definen la interfaz de usuario.
+    - `plantilla.php`: La estructura básica del diseño de la aplicación que se reutiliza en diferentes vistas.
+    - `cargar_pregunta.php`: Vista para mostrar el formulario donde los usuarios pueden enviar preguntas.
+    - `partials/`: Carpeta que almacena vistas parciales reutilizables, como la barra de navegación y el pie de página.
+
+- **public/**: Contiene los archivos públicos accesibles desde el navegador, como los estilos CSS y recursos estáticos.
+    - `styles.css`: Archivo CSS con los estilos personalizados para la apariencia de la aplicación.
 
 ---
 
