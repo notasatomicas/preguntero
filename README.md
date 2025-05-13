@@ -1,60 +1,103 @@
-# CodeIgniter 4 Framework
+# Preguntero 🧠
 
-## What is CodeIgniter?
+**Preguntero** es una aplicación web desarrollada con **CodeIgniter 4** para la gestión y presentación de preguntas tipo test. Permite cargar nuevas preguntas mediante un formulario y mostrarlas de forma secuencial al usuario, validando sus respuestas de forma interactiva.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+Repositorio oficial: [https://github.com/notasatomicas/preguntero](https://github.com/notasatomicas/preguntero)
 
-This repository holds the distributable version of the framework.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+---
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+## 🚀 Características
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+- Formulario para agregar preguntas con 4 opciones y una respuesta correcta.
+- Visualización interactiva de preguntas y evaluación de respuestas en tiempo real.
+- Interfaz responsive utilizando **Bootstrap 5**.
+- Backend simple con **CodeIgniter 4**, sin autenticación.
 
-## Important Change with index.php
+---
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+## 🗃️ Base de Datos
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+La base de datos usa una única tabla llamada `preguntas`. Su estructura es la siguiente:
 
-**Please** read the user guide for a better explanation of how CI4 works!
+### Tabla: `preguntas`
 
-## Repository Management
+| Campo               | Tipo         | Descripción                        |
+|--------------------|--------------|------------------------------------|
+| `id`               | INT, PK, AI  | Identificador único                |
+| `texto`            | TEXT         | Enunciado de la pregunta           |
+| `opcion_1`         | VARCHAR(255) | Primera opción de respuesta        |
+| `opcion_2`         | VARCHAR(255) | Segunda opción de respuesta        |
+| `opcion_3`         | VARCHAR(255) | Tercera opción de respuesta        |
+| `opcion_4`         | VARCHAR(255) | Cuarta opción de respuesta         |
+| `respuesta_correcta` | TINYINT     | Número (1-4) que indica la correcta|
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+> ⚠️ `respuesta_correcta` debe contener un valor del 1 al 4 según la opción correcta.
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+---
 
-## Contributing
+## 🧩 Estructura del proyecto
 
-We welcome contributions from the community.
+app/
+├── Controllers/
+│ ├── Home.php # Página de inicio
+│ ├── PreguntaController.php # Formulario y guardado
+│ └── Pregunta.php # API para obtener preguntas
+├── Models/
+│ └── PreguntaModel.php # Modelo de la tabla 'preguntas'
+├── Views/
+│ ├── plantilla.php # Layout base
+│ ├── cargar_pregunta.php # Vista del formulario
+│ └── partials/
+│ ├── navbar.php
+│ ├── main.php
+│ └── footer.php
+public/
+└── css/
+└── styles.css # Estilos personalizados (opcional)
 
-Please read the [*Contributing to CodeIgniter*](https://github.com/codeigniter4/CodeIgniter4/blob/develop/CONTRIBUTING.md) section in the development repository.
 
-## Server Requirements
+---
 
-PHP version 8.1 or higher is required, with the following extensions installed:
+## 🧪 Uso
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/notasatomicas/preguntero.git
 
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> - The end of life date for PHP 8.1 will be December 31, 2025.
+2. Configura tu entorno local (XAMPP, Laragon, etc.).
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+3. Crea la base de datos y la tabla preguntas.
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+4. Ajusta la base URL en .env o en app/Config/App.php.
+
+5. Accede a:
+
+    / para comenzar a responder preguntas.
+
+    /cargar para agregar nuevas preguntas.
+
+## 📬 Rutas clave
+
+| Ruta                 | Método | Descripción                       |
+| -------------------- | ------ | --------------------------------- |
+| `/`                  | GET    | Página principal con preguntas    |
+| `/cargar`            | GET    | Formulario para agregar pregunta  |
+| `/cargar`            | POST   | Guardado de nueva pregunta (AJAX) |
+| `/api/pregunta`      | GET    | Primera pregunta disponible       |
+| `/api/pregunta/{id}` | GET    | Siguiente pregunta (por ID)       |
+
+## 🛠️ Requisitos
+
+- PHP 8.x
+- MySQL
+- CodeIgniter 4
+- Composer (opcional)
+- Bootstrap 5 (via CDN)
+
+---
+
+## 📄 Licencia
+
+Este proyecto es libre para uso educativo o personal. Puedes adaptarlo a tus necesidades.
+
+---
