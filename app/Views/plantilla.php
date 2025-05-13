@@ -16,30 +16,28 @@
   </head>
   <body>
     <!-- Navbar -->
-    <?= $navbar ?>
+    <?= view('partials/navbar') ?>
 
     <!-- Main Content -->
     <main>
-      <?= $main ?>
+      <?= $main ?? '' ?>
     </main>
 
     <!-- Footer -->
-    <?= $footer ?>
+    <?= view('partials/footer') ?>
 
-    <!-- Bootstrap JS + Popper (CDN) -->
+    <!-- Bootstrap JS + Popper -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       crossorigin="anonymous"
     ></script>
 
-    
+    <!-- Lógica para cargar preguntas -->
     <script>
       let currentId = null;
 
       function loadQuestion(id = null) {
-        const url = id
-          ? `http://localhost/preguntero/public/api/pregunta/${id}`
-          : `http://localhost/preguntero/public/api/pregunta`;
+        const url = id ? `api/pregunta/${id}` : `api/pregunta`;
 
         fetch(url)
           .then((response) => response.json())
@@ -53,9 +51,9 @@
 
             const container = document.getElementById("question-container");
             let html = `
-                    <h5 class="card-title">Pregunta</h5>
-                    <p class="card-text">${data.texto}</p>
-                    <div class="d-grid gap-2">`;
+            <h5 class="card-title">Pregunta</h5>
+            <p class="card-text">${data.texto}</p>
+            <div class="d-grid gap-2">`;
 
             data.opciones.forEach((opcion, i) => {
               const correctAttr =
@@ -74,19 +72,15 @@
         const buttons = document.querySelectorAll("#question-container .btn");
         buttons.forEach((button) => {
           button.addEventListener("click", () => {
-            // Desactivar todos
             buttons.forEach((btn) => (btn.disabled = true));
 
             const correctButton = document.querySelector(
               '[data-correct="true"]'
             );
-
-            correctButton.classList.remove("btn-secondary");
-            correctButton.classList.add("btn-success");
+            correctButton.classList.replace("btn-secondary", "btn-success");
 
             if (button !== correctButton) {
-              button.classList.remove("btn-secondary");
-              button.classList.add("btn-danger");
+              button.classList.replace("btn-secondary", "btn-danger");
             }
 
             setTimeout(() => {
@@ -99,44 +93,13 @@
       function showEndMessage() {
         const container = document.getElementById("question-container");
         container.innerHTML = `
-            <h5 class="card-title text-center">¡Has completado todas las preguntas!</h5>
-            <p class="text-center">Gracias por participar.</p>
-        `;
+        <h5 class="card-title text-center">¡Has completado todas las preguntas!</h5>
+        <p class="text-center">Gracias por participar.</p>`;
       }
 
       document.addEventListener("DOMContentLoaded", () => {
         loadQuestion();
       });
     </script>
-
-
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const buttons = document.querySelectorAll(".card .btn");
-
-        buttons.forEach((button) => {
-          button.addEventListener("click", () => {
-            // Evita múltiples clics
-            buttons.forEach((btn) => (btn.disabled = true));
-
-            const correctButton = document.querySelector(
-              '[data-correct="true"]'
-            );
-
-            // Marcar correcto
-            correctButton.classList.remove("btn-secondary");
-            correctButton.classList.add("btn-success");
-
-            // Si el clic fue en el incorrecto, marcarlo
-            if (button !== correctButton) {
-              button.classList.remove("btn-secondary");
-              button.classList.add("btn-danger");
-            }
-          });
-        });
-      });
-    </script>
-
-
   </body>
 </html>

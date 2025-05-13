@@ -24,7 +24,7 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Inicio</a>
         </li>
-        <li class="nav-item"><a class="nav-link" href="/cargar">Cargar</a></li>
+        <li class="nav-item"><a class="nav-link" href="./cargar">Cargar</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Contacto</a></li>
         <li class="nav-item">
           <a class="nav-link disabled" aria-disabled="true">Disabled</a>

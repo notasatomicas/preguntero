@@ -9,3 +9,5 @@ $routes->get('/', 'Home::index');
 $routes->get('api/pregunta/(:num)', 'Pregunta::siguiente/$1');
 $routes->get('api/pregunta', 'Pregunta::siguiente'); // sin ID (primera pregunta)
 
+$routes->get('cargar', 'PreguntaController::formulario');
+$routes->post('cargar', 'PreguntaController::guardar');
