@@ -34,50 +34,40 @@
 
     
     <script>
-      const questions = [
-        {
-          question:
-            "Con respecto al tejido linfoide. Marque la opción CORRECTA:",
-          answers: [
-            "Está compuesto solo por linfocitos B",
-            "Solo se encuentra en el bazo",
-            "Participa en la defensa inmune del cuerpo",
-            "No se relaciona con ganglios linfáticos",
-          ],
-          correctIndex: 2,
-        },
-        {
-          question: "¿Cuál es la capital de Francia?",
-          answers: ["Madrid", "Berlín", "París", "Londres"],
-          correctIndex: 2,
-        },
-        {
-          question: "¿Qué elemento tiene el símbolo 'O'?",
-          answers: ["Oro", "Oxígeno", "Osmio", "Oxalato"],
-          correctIndex: 1,
-        },
-      ];
+      let currentId = null;
 
-      let currentQuestion = 0;
+      function loadQuestion(id = null) {
+        const url = id
+          ? `http://localhost/preguntero/public/api/pregunta/${id}`
+          : `http://localhost/preguntero/public/api/pregunta`;
 
-      function loadQuestion(index) {
-        const container = document.getElementById("question-container");
-        const q = questions[index];
+        fetch(url)
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.fin) {
+              showEndMessage();
+              return;
+            }
 
-        let html = `
-            <h5 class="card-title">Pregunta</h5>
-            <p class="card-text">${q.question}</p>
-            <div class="d-grid gap-2">`;
+            currentId = data.id;
 
-        q.answers.forEach((answer, i) => {
-          const correctAttr = i === q.correctIndex ? 'data-correct="true"' : "";
-          html += `<button class="btn btn-secondary" type="button" ${correctAttr}>${answer}</button>`;
-        });
+            const container = document.getElementById("question-container");
+            let html = `
+                    <h5 class="card-title">Pregunta</h5>
+                    <p class="card-text">${data.texto}</p>
+                    <div class="d-grid gap-2">`;
 
-        html += `</div>`;
-        container.innerHTML = html;
+            data.opciones.forEach((opcion, i) => {
+              const correctAttr =
+                i === data.correcta ? 'data-correct="true"' : "";
+              html += `<button class="btn btn-secondary" type="button" ${correctAttr}>${opcion}</button>`;
+            });
 
-        attachButtonEvents();
+            html += `</div>`;
+            container.innerHTML = html;
+
+            attachButtonEvents();
+          });
       }
 
       function attachButtonEvents() {
@@ -91,24 +81,16 @@
               '[data-correct="true"]'
             );
 
-            // Mostrar correcto
             correctButton.classList.remove("btn-secondary");
             correctButton.classList.add("btn-success");
 
-            // Marcar incorrecto si corresponde
             if (button !== correctButton) {
               button.classList.remove("btn-secondary");
               button.classList.add("btn-danger");
             }
 
-            // Esperar 1.5 segundos y cargar la siguiente pregunta
             setTimeout(() => {
-              currentQuestion++;
-              if (currentQuestion < questions.length) {
-                loadQuestion(currentQuestion);
-              } else {
-                showEndMessage();
-              }
+              loadQuestion(currentId);
             }, 1500);
           });
         });
@@ -122,12 +104,10 @@
         `;
       }
 
-      // Carga inicial
       document.addEventListener("DOMContentLoaded", () => {
-        loadQuestion(currentQuestion);
+        loadQuestion();
       });
     </script>
-
 
 
     <script>
