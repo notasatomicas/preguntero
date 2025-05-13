@@ -38,23 +38,22 @@ La base de datos usa una única tabla llamada `preguntas`. Su estructura es la s
 ## 🧩 Estructura del proyecto
 
 app/
-├── Controllers/
-│ ├── Home.php # Página de inicio
-│ ├── PreguntaController.php # Formulario y guardado
-│ └── Pregunta.php # API para obtener preguntas
-├── Models/
-│ └── PreguntaModel.php # Modelo de la tabla 'preguntas'
-├── Views/
-│ ├── plantilla.php # Layout base
-│ ├── cargar_pregunta.php # Vista del formulario
-│ └── partials/
-│ ├── navbar.php
-│ ├── main.php
-│ └── footer.php
+├── Controllers/                # Controladores del proyecto
+│   ├── Home.php                # Controlador principal, maneja la página de inicio
+│   ├── PreguntaController.php  # Controlador encargado del formulario de preguntas y su guardado
+│   └── Pregunta.php            # Controlador API para obtener las preguntas almacenadas
+├── Models/                     # Modelos que interactúan con la base de datos
+│   └── PreguntaModel.php       # Modelo que gestiona la tabla 'preguntas' en la base de datos
+├── Views/                      # Archivos de vistas que definen la interfaz de usuario
+│   ├── plantilla.php           # Plantilla base (layout) que envuelve todas las vistas
+│   ├── cargar_pregunta.php     # Vista que muestra el formulario para cargar nuevas preguntas
+│   └── partials/               # Vistas parciales reutilizables
+│       ├── navbar.php          # Barra de navegación común en todas las páginas
+│       ├── main.php            # Contenido principal de la página
+│       └── footer.php          # Pie de página común en todas las páginas
 public/
-└── css/
-└── styles.css # Estilos personalizados (opcional)
-
+└── css/                        # Archivos de estilo CSS para el diseño visual
+    └── styles.css              # Estilos personalizados que definen la apariencia de la aplicación
 
 ---
 
