@@ -85,7 +85,7 @@
 
             setTimeout(() => {
               loadQuestion(currentId);
-            }, 1500);
+            }, 2500);
           });
         });
       }

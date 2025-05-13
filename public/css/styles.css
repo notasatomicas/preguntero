@@ -11,10 +11,28 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #f8f9fa; /* bg-light de Bootstrap */
+    background-color: #343B48; /* bg-light de Bootstrap */
 }
 
 /* Opcional: evitar que el footer quede pegado al contenido si hay poco */
 footer {
     margin-top: auto;
+}
+
+.btn-success{
+  background-color: #00B520 !important;
+}
+
+.btn-danger{
+  background-color: #FB2E01 !important;
+}
+
+.btn-success:disabled,
+.btn-success[disabled] {
+  opacity: 1 !important;
+}
+
+.btn-danger:disabled,
+.btn-danger[disabled] {
+  opacity: 1 !important;
 }
