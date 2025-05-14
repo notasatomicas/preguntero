@@ -1,6 +1,6 @@
 <main>
     <div class="content-wrapper">
-        <div class="card" style="width: 22rem;">
+        <div class="card">
             <div class="card-body" id="question-container">
                 <!-- Pregunta cargada dinámicamente -->
             </div>

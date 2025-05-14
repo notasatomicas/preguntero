@@ -1,6 +1,7 @@
 /* Reset básico para asegurar altura total */
 html, body {
     height: 100%;
+    width: 100%;
     margin: 0;
     padding: 0;
 }
@@ -13,6 +14,12 @@ html, body {
     justify-content: center;
     background-color: #343B48; /* bg-light de Bootstrap */
 }
+
+.card {
+    max-width: 22rem !important; /* Limita el ancho sin romper el diseño en móviles */
+    box-sizing: border-box !important;
+}
+
 
 /* Opcional: evitar que el footer quede pegado al contenido si hay poco */
 footer {
