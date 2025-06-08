@@ -17,6 +17,28 @@ Repositorio oficial: [https://github.com/notasatomicas/preguntero](https://githu
 
 ## 🗃️ Base de Datos
 
+### 🛠️ Script SQL
+
+```sql
+-- Crear la base de datos
+CREATE DATABASE IF NOT EXISTS preguntero
+  DEFAULT CHARACTER SET utf8mb4
+  COLLATE utf8mb4_unicode_ci;
+
+-- Usar la base de datos
+USE preguntero;
+
+-- Crear la tabla preguntas
+CREATE TABLE IF NOT EXISTS preguntas (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  texto TEXT NOT NULL,
+  opcion_1 VARCHAR(255) NOT NULL,
+  opcion_2 VARCHAR(255) NOT NULL,
+  opcion_3 VARCHAR(255) NOT NULL,
+  opcion_4 VARCHAR(255) NOT NULL,
+  respuesta_correcta TINYINT NOT NULL CHECK (respuesta_correcta BETWEEN 1 AND 4)
+);
+
 La base de datos usa una única tabla llamada `preguntas`. Su estructura es la siguiente:
 
 ### Tabla: `preguntas`
